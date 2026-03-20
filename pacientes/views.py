@@ -28,6 +28,7 @@ class PacienteUpdateView(UpdateView):
 class PacienteDeleteView(DeleteView):
     model = Paciente
     success_url = reverse_lazy('paciente_list')
+
     def form_valid(self, form):
         messages.success(self.request, "Paciente eliminado exitosamente.")
         return super().form_valid(form)
