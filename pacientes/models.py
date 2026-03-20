@@ -1,7 +1,7 @@
 from django.db import models
 
 class Propietario(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50) # CharField en Postgres es un VARCHAR
     apellido = models.CharField(max_length=50, null=True, blank=True)
     telefono_contacto = models.CharField(max_length=20)
     email = models.EmailField(blank=True, null=True)
