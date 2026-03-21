@@ -51,3 +51,18 @@ class PropietarioCreateView(CreateView):
     template_name = 'pacientes/propietario_form.html'
     success_url = reverse_lazy('propietario_list')
     success_message = "Propietario creado exitosamente."
+
+class PropietarioUpdateView(UpdateView):
+    model = Propietario
+    form_class = PropietarioForm
+    template_name = 'pacientes/propietario_form.html'
+    success_url = reverse_lazy('propietario_list')
+    success_message = "Propietario actualizado exitosamente."
+
+class PropietarioDeleteView(DeleteView):
+    model = Propietario
+    success_url = reverse_lazy('propietario_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Propietario eliminado exitosamente.")
+        return super().form_valid(form)
