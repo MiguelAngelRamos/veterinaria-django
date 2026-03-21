@@ -32,16 +32,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'paciente_create' %}">Registrar Mascota</a>
+            <a class="nav-link" href="{% url 'paciente_list' %}"> <i class="fa-solid fa-dog me-2"></i>Mascotas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'propietario_list' %}">Propietarios</a>
+            <a class="nav-link" href="{% url 'propietario_list' %}"><i class="fa-solid fa-user me-2"></i>Propietarios</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container">
+  <div class="container pb-5">
     {% block content %}
     <!-- Aqui se inyectara el contenido de las plantillas hijas -->
     {% endblock %}
