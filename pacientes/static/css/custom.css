@@ -1,0 +1,19 @@
+:root {
+  --pastel-primary: #78aedd; 
+  --pastel-secondary: #bde0fe;
+  --pastel-accent: #ffc8dd;
+  --pastel-success: #caffbf;
+  --pastel-danger: #ffadad;
+  --pastel-warning: #fdffb6;
+  --pastel-bg: #f8f9fa;
+  --text-color: #2b2d42;
+}
+
+body {
+  background-color: var(--pastel-bg);
+  color: var(--text-color);
+}
+
+.navbar {
+  background-color: var(--pastel-primary) !important;
+}
