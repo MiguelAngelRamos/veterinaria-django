@@ -39,7 +39,7 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   background-color: #fff;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -57,6 +57,26 @@ body {
   transition: all 0.3s ease;
 }
 
+.btn-primary {
+  background-color: var(--pastel-primary);
+  color: #333;
+}
+
+.btn-primary:hover {
+  background-color: #8bbce5;
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: var(--pastel-secondary);
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #a9cfed;
+  transform: scale(1.05);
+}
+
 .btn-success {
   background-color: var(--pastel-success);
   color: #333;
@@ -65,4 +85,43 @@ body {
 .btn-success:hover {
   background-color: #b5e3ab;
   transform: scale(1.05);
+}
+
+.btn-danger {
+  background-color: var(--pastel-danger);
+  color: #333;
+}
+
+.btn-danger:hover {
+  background-color: #e59b9b;
+  transform: scale(1.05);
+}
+
+.btn-warning {
+  background-color: var(--pastel-warning);
+  color: #333;
+}
+
+.btn-warning:hover {
+  background-color: #e5e5a3;
+  transform: scale(1.05);
+}
+
+/* Forms */
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+  padding: 10px 15px;
+}
+
+.form-control:focus {
+  border-color: var(--pastel-primary);
+  box-shadow: 0 0 0 0.2rem rgba(162, 210, 255, 0.25);
+}
+
+/* Tables */
+
+.table {
+  border-collapse: separate;
 }

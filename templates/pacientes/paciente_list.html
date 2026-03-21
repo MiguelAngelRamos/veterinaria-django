@@ -20,7 +20,7 @@
         {% for paciente in pacientes %}
         <tr>
           <td>{{ paciente.nombre }}</td>
-          <td>{{ paciente.especie }}</td>
+          <td><span class="badge bg-secondary rounded-pill">{{ paciente.especie }}</span></td>
           <td>{{ paciente.raza }}</td>
           <td>{{ paciente.fecha_nacimiento }}</td>
           <td>{{ paciente.propietario }}</td>
