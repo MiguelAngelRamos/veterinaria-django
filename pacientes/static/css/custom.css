@@ -16,4 +16,53 @@ body {
 
 .navbar {
   background-color: var(--pastel-primary) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Agrupacion de selectores para estilos comunes */
+.navbar-brand, .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* Efecto hover es una pseudo-clase */
+.nav-link:hover {
+  color: var(--pastel-secondary) !important;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* cards y contenedores */
+
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+
+.btn  {
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-success {
+  background-color: var(--pastel-success);
+  color: #333;
+}
+
+.btn-success:hover {
+  background-color: #b5e3ab;
+  transform: scale(1.05);
 }
