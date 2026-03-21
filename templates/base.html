@@ -45,6 +45,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+
+    <!-- Logica Global SweetAlert para mostrar mensajes de Django (success, error, info) -->
   {% if messages %}
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -62,6 +64,35 @@
     });
   </script>
   {% endif %}
+
+  <!-- Logica Global para confirmar eliminacion con SweetAlert -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const deleteButtons = document.querySelectorAll('.btn-delete');
+      
+      deleteButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+          event.preventDefault(); // Detiene el envio del formulario
+          const form = this.closest('form'); // Encuentra el formulario padre
+          Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡Esta acción no se puede deshacer! y los datos se eliminarán permanentemente!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              form.submit();
+            }
+          });
+        });
+      });
+    });
+  </script>
   {% block extra_js%}
   {% endblock%}
 </body>
