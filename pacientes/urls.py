@@ -10,5 +10,7 @@ urlpatterns = [
     # Rutas Propietarios
     path('propietarios/', views.PropietarioListView.as_view(), name='propietario_list'),
     path('propietarios/nuevo/', views.PropietarioCreateView.as_view(), name='propietario_create'),
+    path('propietarios/editar/<int:pk>/', views.PropietarioUpdateView.as_view(), name='propietario_update'),
+    path('propietarios/eliminar/<int:pk>/', views.PropietarioDeleteView.as_view(), name='propietario_delete'),
 ]
-# http://127.0.0.1:8000/
+# http://127.0.0.1:8000/propietarios/editar/1/ -> editamos a Sofia, la propietaria de Rocky
