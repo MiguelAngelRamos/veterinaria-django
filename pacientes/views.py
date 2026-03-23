@@ -4,12 +4,13 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import PacienteForm, PropietarioForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 # R: READ (lista de pacientes)
 # SELECT * FROM tabla;
 # ==================================
 #  *VISTAS RELACIONADAS A PACIENTES
 # ==================================
-class PacienteListView(ListView):
+class PacienteListView(LoginRequiredMixin, ListView):
     model = Paciente
     template_name = 'pacientes/paciente_list.html'
     context_object_name = 'pacientes'
