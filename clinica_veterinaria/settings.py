@@ -103,13 +103,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Configuración de bcrypt para hashing de contraseñas PBKDF2 (Funcion 2 de derivacion de clave basada en contraseña)
+# Nist (instituto nacional de estandares y tecnologia) recomienda bcrypt, scrypt o argon2 para hashing de contraseñas
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.ScryptPasswordHasher',
+]
+
+# Configuracion para las redirecciones despues de login/logout
+LOGIN_REDIRECT_URL = 'paciente_list' # Redirige a la lista de pacientes después de iniciar sesión
+LOGOUT_REDIRECT_URL = 'login' # Redirige a la página de login después de cerrar sesión
+LOGIN_URL = 'login' # URL de la página de login
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
