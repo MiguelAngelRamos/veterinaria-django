@@ -5,6 +5,17 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import PacienteForm, PropietarioForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+
+class RegistroUsuarioView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/registro.html'
+    success_url = reverse_lazy('login')
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Usuario registrado exitosamente. Ahora puedes iniciar sesión.")
+        return super().form_valid(form)
+    
 # R: READ (lista de pacientes)
 # SELECT * FROM tabla;
 # ==================================

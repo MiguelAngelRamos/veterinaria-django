@@ -1,72 +1,85 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Clínica Veterinaria</title>
+  <title>🐾 Clínica Veterinaria</title>
 
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-  <!-- Font Awesome para iconos -->
+  <!-- FontAwesome Free -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Custom Css   -->
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-  <!-- SweetAlert2 para alertas bonitas  -->
+
+  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark  mb-4">
+  <nav class="navbar navbar-expand-lg navbar-dark mb-4">
     <div class="container">
-      <a class="navbar-brand" href="#"><i class="fa-solid fa-paw me-2"></i> Clínica Veterinaria</a>
+      <a class="navbar-brand" href="{% url 'paciente_list' %}"><i class="fa-solid fa-paw me-2"></i>Clínica
+        Veterinaria</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'paciente_list' %}"><i class="fa-solid fa-cat me-1"></i> Mascotas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'propietario_list' %}"><i class="fa-solid fa-users me-1"></i>
+              Propietarios</a>
+          </li>
+          {% endif %}
+        </ul>
         <ul class="navbar-nav ms-auto">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'paciente_list' %}"> <i class="fa-solid fa-dog me-2"></i>Mascotas</a>
+            <span class="nav-text text-white me-3 pt-2 d-inline-block"><i class="fa-solid fa-user me-1"></i> Hola, {{ user.username }}</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'propietario_list' %}"><i class="fa-solid fa-user me-2"></i>Propietarios</a>
-          </li>
-           {% endif %}
-        </ul>
-        <!-- opciones auth -->
-         <ul class="navbar-nav ms-auto">
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <span class="nav-text text-white me-3 pt-2 d-inline-block"> <i class="fa-solid fa-user me-2"></i>Hola, {{user.username}}</span>
-          </li>
-          <li class="nav-item">
-            <form method="POST" action="{% url 'logout' %}" class="d-inline">
+            <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
-              <button type="submit" class="btn btn-outline-light btn-sm mt-1"><i class="fa-solid fa-right-from-bracket me-1"></i>Cerrar Sesión</button>
+              <button type="submit" class="btn btn-outline-light btn-sm mt-1"><i
+                  class="fa-solid fa-right-from-bracket me-1"></i> Salir</button>
             </form>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link text-white me-3" href="{% url 'registro' %}"><i class="fa-solid fa-user-plus me-1"></i> Registrarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light btn-sm mt-1" href="{% url 'login' %}"><i
+                class="fa-solid fa-right-to-bracket me-1"></i> Ingresar</a>
+          </li>
           {% endif %}
-         </ul>
+        </ul>
       </div>
     </div>
   </nav>
+
   <div class="container pb-5">
     {% block content %}
     <!-- Aqui se inyectara el contenido de las plantillas hijas -->
     {% endblock %}
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
 
-    <!-- Logica Global SweetAlert para mostrar mensajes de Django (success, error, info) -->
+  <!-- Lógica Global SweetAlert2 para Mensajes Django -->
   {% if messages %}
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -85,36 +98,37 @@
   </script>
   {% endif %}
 
-  <!-- Logica Global para confirmar eliminacion con SweetAlert -->
+  <!-- Lógica Global SweetAlert2 para Confirmar Eliminación -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-
       const deleteButtons = document.querySelectorAll('.btn-delete');
-      
+
       deleteButtons.forEach(button => {
         button.addEventListener('click', function (event) {
-          event.preventDefault(); // Detiene el envio del formulario
-          const form = this.closest('form'); // Encuentra el formulario padre
+          event.preventDefault(); // Detiene el envío inmediato del formulario
+          const form = this.closest('form');
+
           Swal.fire({
             title: '¿Estás seguro?',
-            text: "¡Esta acción no se puede deshacer! y los datos se eliminarán permanentemente!",
+            text: "¡Esta acción no se puede deshacer y los datos se eliminarán permanentemente!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar'
+            confirmButtonColor: '#ffadad',
+            cancelButtonColor: '#a2d2ff',
+            confirmButtonText: '<i class="fa-solid fa-trash me-1"></i> Sí, eliminar',
+            cancelButtonText: '<i class="fa-solid fa-xmark me-1"></i> Cancelar'
           }).then((result) => {
             if (result.isConfirmed) {
-              form.submit();
+              form.submit(); // Si el usuario confirma, enviamos el formulario real
             }
           });
         });
       });
     });
   </script>
-  {% block extra_js%}
-  {% endblock%}
+
+  {% block extra_js %}
+  {% endblock %}
 </body>
 
 </html>

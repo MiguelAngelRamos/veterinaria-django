@@ -1,5 +1,5 @@
 :root {
-  --pastel-primary: #78aedd; 
+  --pastel-primary: #78aedd;
   --pastel-secondary: #bde0fe;
   --pastel-accent: #ffc8dd;
   --pastel-success: #caffbf;
@@ -20,7 +20,8 @@ body {
 }
 
 /* Agrupacion de selectores para estilos comunes */
-.navbar-brand, .nav-link {
+.navbar-brand,
+.nav-link {
   color: #fff !important;
   font-weight: 600;
 }
@@ -49,7 +50,7 @@ body {
 
 /* Buttons */
 
-.btn  {
+.btn {
   border-radius: 20px;
   padding: 8px 20px;
   font-weight: 500;
@@ -146,7 +147,8 @@ body {
 }
 
 .table td {
-  vertical-align: middle; /* Centra el texto o los botones perfectamente en medio (arriba y abajo) */
+  vertical-align: middle;
+  /* Centra el texto o los botones perfectamente en medio (arriba y abajo) */
   border: none;
 }
 
@@ -163,3 +165,5 @@ las filas (tr)  cuando tengas problemas  para redondear las esquinas de las tabl
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+
+
