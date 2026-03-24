@@ -15,21 +15,21 @@ class PacienteListView(LoginRequiredMixin, ListView):
     template_name = 'pacientes/paciente_list.html'
     context_object_name = 'pacientes'
 
-class PacienteCreateView(CreateView):
+class PacienteCreateView(LoginRequiredMixin, CreateView):
     model = Paciente
     form_class = PacienteForm
     template_name = 'pacientes/paciente_form.html'
     success_url = reverse_lazy('paciente_list')
     success_message = "Paciente creado exitosamente."
 
-class PacienteUpdateView(UpdateView):
+class PacienteUpdateView(LoginRequiredMixin, UpdateView):
     model = Paciente
     form_class = PacienteForm
     template_name = 'pacientes/paciente_form.html'
     success_url = reverse_lazy('paciente_list')
     success_message = "Paciente actualizado exitosamente."
 
-class PacienteDeleteView(DeleteView):
+class PacienteDeleteView(LoginRequiredMixin, DeleteView):
     model = Paciente
     success_url = reverse_lazy('paciente_list')
 
@@ -41,26 +41,26 @@ class PacienteDeleteView(DeleteView):
 #  *VISTAS RELACIONADAS A PROPIETARIOS
 # ====================================
 
-class PropietarioListView(ListView):
+class PropietarioListView(LoginRequiredMixin, ListView):
     model = Propietario
     template_name = 'pacientes/propietario_list.html'
     context_object_name = 'propietarios'
 
-class PropietarioCreateView(CreateView):
+class PropietarioCreateView(LoginRequiredMixin, CreateView):
     model = Propietario
     form_class = PropietarioForm
     template_name = 'pacientes/propietario_form.html'
     success_url = reverse_lazy('propietario_list')
     success_message = "Propietario creado exitosamente."
 
-class PropietarioUpdateView(UpdateView):
+class PropietarioUpdateView(LoginRequiredMixin, UpdateView):
     model = Propietario
     form_class = PropietarioForm
     template_name = 'pacientes/propietario_form.html'
     success_url = reverse_lazy('propietario_list')
     success_message = "Propietario actualizado exitosamente."
 
-class PropietarioDeleteView(DeleteView):
+class PropietarioDeleteView(LoginRequiredMixin, DeleteView):
     model = Propietario
     success_url = reverse_lazy('propietario_list')
 

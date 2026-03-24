@@ -31,13 +31,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'paciente_list' %}"> <i class="fa-solid fa-dog me-2"></i>Mascotas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'propietario_list' %}"><i class="fa-solid fa-user me-2"></i>Propietarios</a>
           </li>
+           {% endif %}
         </ul>
+        <!-- opciones auth -->
+         <ul class="navbar-nav ms-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <span class="nav-text text-white me-3 pt-2 d-inline-block"> <i class="fa-solid fa-user me-2"></i>Hola, {{user.username}}</span>
+          </li>
+          <li class="nav-item">
+            <form method="POST" action="{% url 'logout' %}" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-light btn-sm mt-1"><i class="fa-solid fa-right-from-bracket me-1"></i>Cerrar Sesión</button>
+            </form>
+          </li>
+          {% endif %}
+         </ul>
       </div>
     </div>
   </nav>

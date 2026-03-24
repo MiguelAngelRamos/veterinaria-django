@@ -49,3 +49,15 @@ pip freeze > requirements.txt
 ```sh
 pip install -r requirements.txt
 ```
+
+
+## Instalaciones para encriptacion de passwords (importante tener activado entorno)
+ 
+```sh
+pip install bcrypt
+```
+
+
+```sh
+pip install argon2-cffi
+```
